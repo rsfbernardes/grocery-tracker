@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,12 +30,16 @@ public class Product {
     private String supermarket;
 
     @ElementCollection
-    private List<PricePoint> priceHistory;
+    @CollectionTable(name = "product_price_history", joinColumns = @JoinColumn(name = "product_id"))
+    private List<PricePoint> priceHistory = new ArrayList<>();
 
     @Data
     @Embeddable
     public static class PricePoint {
+        @Column(name = "date", nullable = false)
         private LocalDate date;
+
+        @Column(name = "price", nullable = false)
         private Double price;
     }
 
