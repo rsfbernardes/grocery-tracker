@@ -1,8 +1,9 @@
 services:
-
-  grocery-service:
-    build: .
+  grocery-backend:
     container_name: gt_backend
+    build: .
+    env_file:
+      - .env
     depends_on:
       postgres:
         condition: service_healthy
@@ -15,26 +16,14 @@ services:
 
       SPRING_ELASTICSEARCH_URIS: http://elasticsearch:9200
     ports:
-      - "8081:8080" # host_port:container_port
+      - "8081:8080"
     restart: unless-stopped
-
-  app:
-    build: .
-    env_file:
-      - .env
-    depends_on:
-      - db
-
-  db:
-    image: postgres:15
-    env_file:
-      - .env
-    volumes:
-      - pgdata:/var/lib/postgresql/data
 
   postgres:
     image: postgres:15
     container_name: gt_postgres
+    env_file:
+      - .env
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -44,7 +33,6 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      # Healthcheck does NOT expand .env variables → must use literal values
       test: ["CMD-SHELL", "pg_isready -U grocery -d grocerydb"]
       interval: 10s
       timeout: 5s
