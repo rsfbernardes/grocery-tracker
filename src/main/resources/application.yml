@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: grocery-tracker
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+
+  elasticsearch:
+    uris: http://localhost:9200
+    connection-timeout: 1000
+    socket-timeout: 30000
+
+logging:
+  level:
+    org.springframework.data.elasticsearch: DEBUG
