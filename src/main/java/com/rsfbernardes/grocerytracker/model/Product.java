@@ -29,7 +29,7 @@ public class Product {
 
     private String supermarket;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "product_price_history", joinColumns = @JoinColumn(name = "product_id"))
     private List<PricePoint> priceHistory = new ArrayList<>();
 
