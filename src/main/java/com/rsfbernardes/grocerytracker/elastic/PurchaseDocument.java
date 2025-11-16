@@ -1,7 +1,9 @@
 package com.rsfbernardes.grocerytracker.elastic;
 
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -10,16 +12,18 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(indexName = "purchases-index")
 public class PurchaseDocument {
 
     @Id
     private String id;
 
-    @Field(type = FieldType.Long)
+    @Field(type = FieldType.Keyword)
     private String purchaseId;
 
-    @Field(type = FieldType.Long)
+    @Field(type = FieldType.Keyword)
     private String productId;
 
     @Field(type = FieldType.Text)
