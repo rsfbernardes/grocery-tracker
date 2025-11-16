@@ -1,11 +1,15 @@
 package com.rsfbernardes.grocerytracker.elastic.index;
 
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
 @Document(indexName = "products")
 public class ProductIndex {
 
