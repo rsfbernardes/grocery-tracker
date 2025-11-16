@@ -16,7 +16,7 @@ public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private String id;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "product_id")

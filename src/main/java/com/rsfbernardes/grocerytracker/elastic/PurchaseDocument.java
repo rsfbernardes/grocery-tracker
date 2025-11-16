@@ -17,10 +17,10 @@ public class PurchaseDocument {
     private String id;
 
     @Field(type = FieldType.Long)
-    private Long purchaseId;
+    private String purchaseId;
 
     @Field(type = FieldType.Long)
-    private Long productId;
+    private String productId;
 
     @Field(type = FieldType.Text)
     private String productName;
