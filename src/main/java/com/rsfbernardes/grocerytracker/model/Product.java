@@ -6,10 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,31 +14,30 @@ import java.util.List;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long id;
 
-    @NotBlank(message = "Name cannot be blank")
     @Column(nullable = false, unique = true)
     private String name;
 
-    private String category;
+    @Column(nullable = false)
+    private String brand;
 
-    private Double currentPrice;
+    @Column(nullable = false)
+    private String size;
 
-    private String supermarket;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "product_price_history", joinColumns = @JoinColumn(name = "product_id"))
-    private List<PricePoint> priceHistory = new ArrayList<>();
-
-    @Data
-    @Embeddable
-    public static class PricePoint {
-        @Column(name = "date", nullable = false)
-        private LocalDate date;
-
-        @Column(name = "price", nullable = false)
-        private Double price;
-    }
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    @CollectionTable(name = "product_price_history", joinColumns = @JoinColumn(name = "product_id"))
+//    private List<PricePoint> priceHistory = new ArrayList<>();
+//
+//    @Data
+//    @Embeddable
+//    public static class PricePoint {
+//        @Column(name = "date", nullable = false)
+//        private LocalDate date;
+//
+//        @Column(name = "price", nullable = false)
+//        private Double price;
+//    }
 
 }

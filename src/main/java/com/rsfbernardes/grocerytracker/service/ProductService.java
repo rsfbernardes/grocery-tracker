@@ -3,22 +3,24 @@ package com.rsfbernardes.grocerytracker.service;
 import com.rsfbernardes.grocerytracker.model.Product;
 import com.rsfbernardes.grocerytracker.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
-    final ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    public Product addProduct(Product product) {
+    public Product createProduct(Product product) {
+        log.info("Creating product {}", product.getName());
         return productRepository.save(product);
     }
 
-    public List<Product> getAllProducts() {
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 

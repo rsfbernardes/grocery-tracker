@@ -1,0 +1,21 @@
+package com.rsfbernardes.grocerytracker.repository;
+
+import com.rsfbernardes.grocerytracker.model.Purchase;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
+
+    List<Purchase> findByProductId(Long productId);
+
+    @Query("SELECT p FROM Purchase p WHERE p.product.id = :productId ORDER BY p.value ASC LIMIT 1")
+    Purchase findLowestPrice(Long productId);
+
+    @Query("SELECT p FROM Purchase p WHERE p.product.id = :productId ORDER BY p.value DESC LIMIT 1")
+    Purchase findHighestPrice(Long productId);
+
+}
