@@ -10,12 +10,15 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: false
+    show-sql:
+
+  flyway:
+    enabled: true
 
   elasticsearch:
     uris: http://localhost:9200
@@ -24,4 +27,4 @@ spring:
 
 logging:
   level:
-    org.springframework.data.elasticsearch: DEBUG
+    org.springframework.data.elasticsearch: INFO
