@@ -29,7 +29,7 @@ public class PurchaseService {
         Purchase savedPurchase = purchaseRepository.save(purchase);
         log.info("Saved purchase {}", savedPurchase);
         purchaseIndexerService.index(savedPurchase, product);
-        log.info("Indexed purchase {}", savedPurchase);
+        log.info("Indexed purchase {} to elasticsearch", savedPurchase);
         return savedPurchase;
     }
 
@@ -39,7 +39,9 @@ public class PurchaseService {
 
     public void delete(Long purchaseId) {
         purchaseRepository.deleteById(purchaseId);
+        log.info("Deleted purchaseId {}", purchaseId);
         purchaseIndexerService.deleteIndexed(purchaseId);
+        log.info("Deleted elasticsearch index purchaseId {}", purchaseId);
     }
 
 }
