@@ -16,12 +16,12 @@ public class ReportController {
     private final ReportService reportsService;
 
     @GetMapping("/lowest/{productId}")
-    public Purchase lowest(@PathVariable Long productId) {
+    public Purchase lowest(@PathVariable String productId) {
         return reportsService.lowestPrice(productId);
     }
 
     @GetMapping("/highest/{productId}")
-    public Purchase highest(@PathVariable Long productId) {
+    public Purchase highest(@PathVariable String productId) {
         return reportsService.highestPrice(productId);
     }
 

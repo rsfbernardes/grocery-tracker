@@ -33,11 +33,11 @@ public class PurchaseService {
         return savedPurchase;
     }
 
-    public List<Purchase> findByProductId(Long productId) {
+    public List<Purchase> findByProductId(String productId) {
         return purchaseRepository.findByProductId(productId);
     }
 
-    public void delete(Long purchaseId) {
+    public void delete(String purchaseId) {
         purchaseRepository.deleteById(purchaseId);
         log.info("Deleted purchaseId {}", purchaseId);
         purchaseIndexerService.deleteIndexed(purchaseId);

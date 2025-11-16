@@ -26,7 +26,7 @@ public class ReportService {
      * Find minimum price for a product using Elasticsearch by sorting ascending and taking first result.
      * Returns null if no document found.
      */
-    public Double findMinPriceEs(Long productId) {
+    public Double findMinPriceEs(String productId) {
         NativeQuery query = NativeQuery.builder()
                 .withQuery(q -> q
                         .term(t -> t
@@ -50,14 +50,14 @@ public class ReportService {
             return null;
         }
         SearchHit<PurchaseDocument> first = hits.getSearchHits().getFirst();
-        return first.getContent().getValue(); // change to getPrice() if needed
+        return first.getContent().getValue();
     }
 
     /**
      * Find maximum price for a product using Elasticsearch by sorting descending and taking first result.
      * Returns null if no document found.
      */
-    public Double findMaxPriceEs(Long productId) {
+    public Double findMaxPriceEs(String productId) {
         NativeQuery query = NativeQuery.builder()
                 .withQuery(q -> q
                         .term(t -> t
@@ -84,19 +84,19 @@ public class ReportService {
     }
 
     // simple inflation calculation using SQL averages
-    public OptionalDouble calculateInflationSql(Long productId, LocalDate startInclusive, LocalDate endInclusive) {
-        Double startAvg = reportRepository.findAvgBetween(productId, startInclusive.minusDays(3), startInclusive.plusDays(3));
-        Double endAvg = reportRepository.findAvgBetween(productId, endInclusive.minusDays(3), endInclusive.plusDays(3));
-        if (startAvg == null || endAvg == null || startAvg == 0) return OptionalDouble.empty();
-        double inflation = ((endAvg - startAvg) / startAvg) * 100.0;
-        return OptionalDouble.of(inflation);
-    }
+//    public OptionalDouble calculateInflationSql(Long productId, LocalDate startInclusive, LocalDate endInclusive) {
+//        Double startAvg = reportRepository.findAvgBetween(productId, startInclusive.minusDays(3), startInclusive.plusDays(3));
+//        Double endAvg = reportRepository.findAvgBetween(productId, endInclusive.minusDays(3), endInclusive.plusDays(3));
+//        if (startAvg == null || endAvg == null || startAvg == 0) return OptionalDouble.empty();
+//        double inflation = ((endAvg - startAvg) / startAvg) * 100.0;
+//        return OptionalDouble.of(inflation);
+//    }
 
-    public Purchase lowestPrice(Long productId) {
+    public Purchase lowestPrice(String productId) {
         return reportRepository.findTopByProductIdOrderByValueAsc(productId);
     }
 
-    public Purchase highestPrice(Long productId) {
+    public Purchase highestPrice(String productId) {
         return reportRepository.findTopByProductIdOrderByValueDesc(productId);
     }
 

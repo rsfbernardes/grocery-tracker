@@ -25,7 +25,7 @@ public class PurchaseIndexerService {
         purchaseDocumentRepository.save(document);
     }
 
-    public void deleteIndexed(Long purchaseId) {
+    public void deleteIndexed(String purchaseId) {
         purchaseDocumentRepository.deleteById(
                 String.valueOf(purchaseId));
     }
