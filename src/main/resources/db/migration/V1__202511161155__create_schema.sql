@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 CREATE TABLE IF NOT EXISTS product_price_history (
+                                                     id SERIAL PRIMARY KEY,
                                                      product_id BIGINT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
-                                                     date DATE NOT NULL,
-                                                     price DOUBLE PRECISION NOT NULL
+                                                     price DOUBLE PRECISION NOT NULL,
+                                                     date DATE NOT NULL
 );
