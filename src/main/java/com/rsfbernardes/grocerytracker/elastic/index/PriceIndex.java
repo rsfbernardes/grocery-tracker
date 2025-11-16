@@ -1,4 +1,4 @@
-package com.rsfbernardes.grocerytracker.elastic;
+package com.rsfbernardes.grocerytracker.elastic.index;
 
 import jakarta.persistence.Id;
 import lombok.Data;
