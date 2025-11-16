@@ -25,14 +25,4 @@ public class ReportController {
         return reportsService.highestPrice(productId);
     }
 
-    @GetMapping("/best/{productId}")
-    public String best(@PathVariable Long productId) {
-        return reportsService.bestSupermarket(productId);
-    }
-
-    @GetMapping("/worst/{productId}")
-    public String worst(@PathVariable Long productId) {
-        return reportsService.worstSupermarket(productId);
-    }
-
 }

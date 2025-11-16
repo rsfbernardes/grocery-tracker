@@ -2,7 +2,7 @@ package com.rsfbernardes.grocerytracker.service;
 
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import com.rsfbernardes.grocerytracker.elastic.PurchaseDocument;
-import com.rsfbernardes.grocerytracker.elastic.PurchaseDocumentRepository;
+import com.rsfbernardes.grocerytracker.model.Purchase;
 import com.rsfbernardes.grocerytracker.repository.PurchaseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -20,8 +20,7 @@ import java.util.OptionalDouble;
 public class ReportService {
 
     private final ElasticsearchOperations elasticsearchOperations;
-    private final PurchaseDocumentRepository docRepo;
-    private final PurchaseRepository purchaseRepository; // SQL fallback
+    private final PurchaseRepository purchaseRepository;
 
     /**
      * Find minimum price for a product using Elasticsearch by sorting ascending and taking first result.
@@ -91,6 +90,14 @@ public class ReportService {
         if (startAvg == null || endAvg == null || startAvg == 0) return OptionalDouble.empty();
         double inflation = ((endAvg - startAvg) / startAvg) * 100.0;
         return OptionalDouble.of(inflation);
+    }
+
+    public Purchase lowestPrice(Long productId) {
+        return purchaseRepository.findTopByProductIdOrderByValueAsc(productId);
+    }
+
+    public Purchase highestPrice(Long productId) {
+        return purchaseRepository.findTopByProductIdOrderByValueDesc(productId);
     }
 
 }
