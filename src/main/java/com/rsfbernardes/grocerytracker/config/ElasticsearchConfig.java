@@ -1,4 +1,4 @@
-package com.rsfbernardes.grocerytracker.elastic.config;
+package com.rsfbernardes.grocerytracker.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
