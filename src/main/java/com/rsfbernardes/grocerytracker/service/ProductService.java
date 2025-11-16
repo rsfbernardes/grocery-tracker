@@ -24,4 +24,9 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public Product findByName(String name) {
+        return productRepository.findByNameIgnoreCase(name)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found with name: " + name));
+    }
+
 }

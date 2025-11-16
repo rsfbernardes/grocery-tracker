@@ -33,7 +33,7 @@ public class PurchaseService {
         return savedPurchase;
     }
 
-    public List<Purchase> findByProduct(Long productId) {
+    public List<Purchase> findByProductId(Long productId) {
         return purchaseRepository.findByProductId(productId);
     }
 

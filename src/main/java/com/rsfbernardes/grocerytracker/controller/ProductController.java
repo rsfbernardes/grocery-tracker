@@ -24,4 +24,9 @@ public class ProductController {
         return productService.findAll();
     }
 
+    @GetMapping("/{name}")
+    public Product getByName(@PathVariable String name) {
+        return productService.findByName(name);
+    }
+
 }
