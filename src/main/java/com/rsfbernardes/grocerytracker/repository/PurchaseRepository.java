@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -17,5 +18,8 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
     @Query("SELECT p FROM Purchase p WHERE p.product.id = :productId ORDER BY p.value DESC LIMIT 1")
     Purchase findHighestPrice(Long productId);
+
+    @Query(value = "SELECT AVG(value) FROM purchases WHERE product_id = ?1 AND date BETWEEN ?2 AND ?3", nativeQuery = true)
+    Double findAvgBetween(Long productId, LocalDate start, LocalDate end);
 
 }

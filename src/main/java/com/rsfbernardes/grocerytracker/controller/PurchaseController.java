@@ -21,7 +21,12 @@ public class PurchaseController {
 
     @GetMapping("/product/{id}")
     public List<Purchase> getByProduct(@PathVariable Long id) {
-        return purchaseService.getByProduct(id);
+        return purchaseService.findByProduct(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        purchaseService.delete(id);
     }
 
 }

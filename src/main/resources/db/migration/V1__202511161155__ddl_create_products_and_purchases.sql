@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS products
     id     BIGSERIAL PRIMARY KEY,
     name   VARCHAR(255) NOT NULL UNIQUE,
     brand  VARCHAR(255),
-    weight VARCHAR(64)
+    size VARCHAR(64)
 );
 
 CREATE TABLE IF NOT EXISTS purchases

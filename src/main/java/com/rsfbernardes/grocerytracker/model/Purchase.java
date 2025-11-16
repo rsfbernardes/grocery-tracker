@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Purchase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long id;
 
     @ManyToOne(optional = false)
