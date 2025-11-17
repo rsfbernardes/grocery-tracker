@@ -19,9 +19,16 @@ spring:
   flyway:
     enabled: true
 
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+
   elasticsearch:
     uris: ${SPRING_ELASTICSEARCH_URIS}
-    connection-timeout: 1000
+    username: ""        # disabled security
+    password: ""        # disabled security
+    connection-timeout: 30s
     socket-timeout: 30000
 
 logging:
