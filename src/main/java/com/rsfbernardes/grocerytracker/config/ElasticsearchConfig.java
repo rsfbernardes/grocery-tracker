@@ -3,9 +3,11 @@ package com.rsfbernardes.grocerytracker.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.elc.ElasticsearchConfiguration;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.lang.NonNull;
 
 @Configuration
+@EnableElasticsearchRepositories(basePackages = "com.rsfbernardes.grocerytracker.elastic.repository")
 public class ElasticsearchConfig extends ElasticsearchConfiguration {
 
 
@@ -13,7 +15,7 @@ public class ElasticsearchConfig extends ElasticsearchConfiguration {
     @NonNull
     public ClientConfiguration clientConfiguration() {
         return ClientConfiguration.builder()
-                .connectedTo("localhost:9200")
+                .connectedTo("http://localhost:9200")
                 .build();
     }
 }

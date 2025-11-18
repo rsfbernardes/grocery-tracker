@@ -1,8 +1,8 @@
 package com.rsfbernardes.grocerytracker.elastic;
 
+import com.rsfbernardes.grocerytracker.elastic.repository.PurchaseDocumentRepository;
 import com.rsfbernardes.grocerytracker.model.Product;
 import com.rsfbernardes.grocerytracker.model.Purchase;
-import com.rsfbernardes.grocerytracker.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

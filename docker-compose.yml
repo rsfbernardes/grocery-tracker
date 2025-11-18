@@ -10,9 +10,9 @@ services:
       elasticsearch:
         condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
-      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
-      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/grocerydb
+      SPRING_DATASOURCE_USERNAME: grocery
+      SPRING_DATASOURCE_PASSWORD: grocery_pass
 
       SPRING_ELASTICSEARCH_URIS: http://elasticsearch:9200
     ports:
@@ -49,7 +49,7 @@ services:
     restart: unless-stopped
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.13
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
     container_name: gt_elasticsearch
     environment:
       discovery.type: single-node

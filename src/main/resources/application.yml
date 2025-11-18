@@ -3,9 +3,9 @@ spring:
     name: grocery-tracker
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://postgres:5432/grocerydb
+    username: grocery
+    password: grocery_pass
     driver-class-name: org.postgresql.Driver
 
   jpa:
