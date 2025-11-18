@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(indexName = "purchases-index")
+@Document(indexName = "purchases")
 public class PurchaseDocument {
 
     @Id

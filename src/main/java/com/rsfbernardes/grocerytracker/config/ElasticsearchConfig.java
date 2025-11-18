@@ -6,7 +6,7 @@ import org.springframework.data.elasticsearch.client.elc.ElasticsearchConfigurat
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.lang.NonNull;
 
-@Configuration
+//@Configuration
 @EnableElasticsearchRepositories(basePackages = "com.rsfbernardes.grocerytracker.elastic.repository")
 public class ElasticsearchConfig extends ElasticsearchConfiguration {
 

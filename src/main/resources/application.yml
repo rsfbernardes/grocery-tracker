@@ -1,11 +1,16 @@
+server:
+  port: 8087
+  servlet:
+    context-path: "/grocery-tracker"
+
 spring:
   application:
     name: grocery-tracker
 
   datasource:
-    url: jdbc:postgresql://postgres:5432/grocerydb
-    username: grocery
-    password: grocery_pass
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1234
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -25,9 +30,7 @@ spring:
         enabled: true
 
   elasticsearch:
-    uris: ${SPRING_ELASTICSEARCH_URIS}
-    username: ""        # disabled security
-    password: ""        # disabled security
+    uris: http://localhost:9200
     connection-timeout: 30s
     socket-timeout: 30000
 
